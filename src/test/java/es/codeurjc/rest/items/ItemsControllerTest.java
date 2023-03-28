@@ -1,6 +1,7 @@
 package es.codeurjc.rest.items;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +30,7 @@ public class ItemsControllerTest {
 	}
 	@Test
 	public void testing(){
-		assertThat(true==false);
+		assertEquals(true, false);
 	}
 
 }
