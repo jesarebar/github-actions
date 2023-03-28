@@ -17,3 +17,4 @@ Para lanzar la aplicación el local:
 ```
     java -jar target/items-0.0.1-SNAPSHOT.jar 
 ```
+
