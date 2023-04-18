@@ -15,7 +15,7 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: Run tests with maven
-        run: mvn clean test -Dtest="es.codeurjc.rest.items.unitary"
+        run: mvn test -Dtest="es.codeurjc.rest.items.unitary.*"
 
   intregration_tests:
     runs-on: ubuntu-latest
@@ -27,4 +27,4 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: Run tests with maven
-        run: mvn clean test -Dtest="es.codeurjc.rest.items.integration"
+        run: mvn test -Dtest="es.codeurjc.rest.items.integration.*"
