@@ -1,4 +1,4 @@
-package es.codeurjc.rest.items;
+package es.codeurjc.ais;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

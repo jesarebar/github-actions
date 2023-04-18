@@ -1,13 +1,12 @@
-package es.codeurjc.rest.items.unitary;
+package es.codeurjc.ais.integration;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import es.codeurjc.rest.items.Item;
-import es.codeurjc.rest.items.ItemsRepository;
+import es.codeurjc.ais.Item;
+import es.codeurjc.ais.ItemsRepository;
 import org.junit.jupiter.api.Test;
 
-public class ItemsControllerTest {
+import static org.assertj.core.api.Assertions.assertThat;
+
+public class IntegrationTest {
 
 	@Test
 	public void postItemTest() throws Exception {
