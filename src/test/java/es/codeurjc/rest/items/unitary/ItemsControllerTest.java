@@ -1,8 +1,10 @@
-package es.codeurjc.rest.items;
+package es.codeurjc.rest.items.unitary;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import es.codeurjc.rest.items.Item;
+import es.codeurjc.rest.items.ItemsRepository;
 import org.junit.jupiter.api.Test;
 
 public class ItemsControllerTest {
