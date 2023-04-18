@@ -1,4 +1,4 @@
-package es.codeurjc.rest.items;
+package es.codeurjc.ais;
 
 import java.time.LocalTime;
 import java.util.Collection;

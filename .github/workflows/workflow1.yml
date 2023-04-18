@@ -1,8 +1,9 @@
 name: workflow1
 
 on:
-  push:
-    branches: [ develop, feature/* ]
+  pull-request:
+    branches:
+      -develop
 
 jobs:
   unitary_tests:
@@ -15,7 +16,7 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: Run tests with maven
-        run: mvn test -Dtest="src.test.java.es.codeurjc.rest.items.unitary.*"
+        run: mvn test -Dtest="UnitaryTest"
 
   intregration_tests:
     runs-on: ubuntu-latest
@@ -27,4 +28,16 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: Run tests with maven
-        run: mvn test -Dtest="src.test.java.es.codeurjc.rest.items.integration.*"
+        run: mvn test -Dtest="IntegrationTest"
+
+  e2e_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - name: Run tests with maven
+        run: mvn test -Dtest="src.test.java.es.codeurjc.ais.e2e.*"

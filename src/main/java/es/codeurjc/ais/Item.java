@@ -1,4 +1,4 @@
-package es.codeurjc.rest.items;
+package es.codeurjc.ais;
 
 public class Item {
 
