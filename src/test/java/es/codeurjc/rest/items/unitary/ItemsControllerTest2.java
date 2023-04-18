@@ -7,7 +7,7 @@ import es.codeurjc.rest.items.Item;
 import es.codeurjc.rest.items.ItemsRepository;
 import org.junit.jupiter.api.Test;
 
-public class ItemsControllerTest {
+public class ItemsControllerTest2 {
 
 	@Test
 	public void postItemTest() throws Exception {
