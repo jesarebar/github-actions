@@ -15,7 +15,7 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: Run tests with maven
-        run: mvn test -Dtest=unitary
+        run: mvn test -Dtest=ItemsControllerTest2
 
   intregration_tests:
     runs-on: ubuntu-latest
@@ -27,4 +27,4 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: Run tests with maven
-        run: mvn test -Dtest=integration
+        run: mvn test -Dtest=ItemsControllerTest
