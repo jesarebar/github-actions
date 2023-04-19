@@ -1,12 +1,12 @@
-package es.codeurjc.rest.items.integration;
+package es.codeurjc.ais.e2e.rest;
 
-import es.codeurjc.rest.items.Item;
-import es.codeurjc.rest.items.ItemsRepository;
+import es.codeurjc.ais.Item;
+import es.codeurjc.ais.ItemsRepository;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ItemsControllerTest {
+public class RestTest {
 
 	@Test
 	public void postItemTest() throws Exception {
