@@ -1,9 +1,9 @@
-name: workflow1
+name: workflow2
 
 on:
   push:
-    branches:
-      -develop
+    branches: [develop]
+
 
 jobs:
   unitary_tests:
