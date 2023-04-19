@@ -2,8 +2,8 @@ name: workflow1
 
 on:
   push:
-    branches:
-      -develop
+    branches: [develop]
+
 
 jobs:
   unitary_tests:
