@@ -5,7 +5,6 @@ on:
     branches:
       - develop
 
-
 jobs:
   UnitaryIntegrationE2ETests:
     runs-on: ubuntu-latest
@@ -23,5 +22,8 @@ jobs:
       - name: Run Integration tests with maven
         run: mvn test -Dtest="es/codeurjc/ais/integration/*"
 
-      - name: Run e2e tests with maven
-        run: mvn test -Dtest="es/codeurjc/ais/e2e/*"
+      - name: Run Rest tests with maven
+        run: mvn test -Dtest="es/codeurjc/ais/e2e/rest/*"
+
+      - name: Run Selenium tests with maven
+        run: mvn test -Dtest="es/codeurjc/ais/e2e/selenium/*"
