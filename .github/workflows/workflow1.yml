@@ -28,4 +28,4 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: Run tests with maven
-        run: mvn test -Dtest="IntegrationTest"
+        run: mvn -Dtest="src/test/java/es.codeurjc.ais/integration/**" test
