@@ -2,8 +2,7 @@ name: workflow1
 
 on:
   pull_request:
-    branches:
-      - develop
+    branches: [develop]
 
 jobs:
   Workflow 1 = Unitary and Integration Tests:
