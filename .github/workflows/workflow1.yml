@@ -2,8 +2,7 @@ name: workflow1
 
 on:
   pull_request:
-    branches:
-      -feature/*
+    branches: [feature/*]
 
 jobs:
   unitary_tests:
