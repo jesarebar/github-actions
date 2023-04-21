@@ -1,11 +1,12 @@
-name: workflow1
+name: Workflow1
 
 on:
   pull_request:
-    branches: [develop]
+    branches:
+      - develop
 
 jobs:
-  Workflow_1_Unitary_Integration:
+  UnitaryIntegrationTests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
