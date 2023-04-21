@@ -19,5 +19,5 @@ jobs:
         run: mvn test -Dtest="UnitaryTest"
 
       - name: Run Integration Tests with maven
-        run: mvn -Dtest="src/test/java/es.codeurjc.ais/integration/**" test
+        run: mvn test -Dtest=es.codeurjc.ais.integration.*
 
