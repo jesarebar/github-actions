@@ -1,12 +1,13 @@
-name: workflow2
+name: Workflow2
 
 on:
   push:
-    branches: [develop]
+    branches:
+      - develop
 
 
 jobs:
-  tests:
+  UnitaryIntegrationE2ETests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -17,10 +18,10 @@ jobs:
           java-version: '17'
 
       - name: Run Unitary tests with maven
-        run: mvn test -Dtest="UnitaryTest"
+        run: mvn test -Dtest="es/codeurjc/ais/unitary/*"
 
       - name: Run Integration tests with maven
-        run: mvn test -Dtest="IntegrationTest"
+        run: mvn test -Dtest="es/codeurjc/ais/integration/*"
 
       - name: Run e2e tests with maven
-        run: mvn test -Dtest="src.test.java.es.codeurjc.ais.e2e.*"
+        run: mvn test -Dtest="es/codeurjc/ais/e2e/*"
