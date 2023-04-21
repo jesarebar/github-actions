@@ -3,7 +3,7 @@ name: workflow1
 on:
   pull_request:
     branches:
-      -develop
+      -feature/*
 
 jobs:
   unitary_tests:
@@ -28,4 +28,4 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: Run tests with maven
-        run: mvn test -Dtest="IntegrationTest"
+        run: mvn -Dtest="src/test/java/es.codeurjc.ais/integration/**" test
