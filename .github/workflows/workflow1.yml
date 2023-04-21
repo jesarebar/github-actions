@@ -5,7 +5,7 @@ on:
     branches: [develop]
 
 jobs:
-  Workflow 1 = Unitary and Integration Tests:
+  Workflow_1_Unitary_Integration:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -16,7 +16,7 @@ jobs:
           java-version: '17'
 
       - name: Run Unitary Tests with maven
-        run: mvn test -Dtest=es/codeurjc/ais/unitary/*
+        run: mvn test -Dtest="es/codeurjc/ais/unitary/*"
 
       - name: Run Integration Tests with maven
         run: mvn test -Dtest="es/codeurjc/ais/integration/*"
