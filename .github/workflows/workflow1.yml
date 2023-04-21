@@ -1,12 +1,12 @@
-name: workflow1
+name: Workflow1
 
 on:
   pull_request:
     branches:
-      -feature/*
+      - develop
 
 jobs:
-  unitary_tests:
+  UnitaryIntegrationTests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -15,17 +15,9 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-      - name: Run tests with maven
-        run: mvn test -Dtest="UnitaryTest"
 
-  intregration_tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-      - name: Run tests with maven
-        run: mvn -Dtest="src/test/java/es.codeurjc.ais/integration/**" test
+      - name: Run Unitary Tests with maven
+        run: mvn test -Dtest="es/codeurjc/ais/unitary/*"
+
+      - name: Run Integration Tests with maven
+        run: mvn test -Dtest="es/codeurjc/ais/integration/*"
