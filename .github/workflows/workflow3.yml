@@ -30,12 +30,15 @@ jobs:
       - name: Run Selenium tests with maven
         run: mvn test -Dtest="es/codeurjc/ais/e2e/selenium/*"
 
-      - name: Generate Docker image
-        run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=${{ secrets.DOCKERHUB_USERNAME }}/books-reviewer:dev-${{steps.timestamp.outputs.tag}}
-      - name: Login to DockerHub
-        run: docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" -p "${{ secrets.DOCKERHUB_TOKEN }}"
       - name: Generate timestamp
         run: echo "tag=$(date +'%Y%m%d.%H%M%S')" >> $GITHUB_OUTPUT
         id: timestamp
+
+      - name: Generate Docker image
+        run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=${{ secrets.DOCKERHUB_USERNAME }}/books-reviewer:dev-${{steps.timestamp.outputs.tag}}
+
+      - name: Login to DockerHub
+        run: docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" -p "${{ secrets.DOCKERHUB_TOKEN }}"
+
       - name: Push image to DockerHub
         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/books-reviewer:dev-${{steps.timestamp.outputs.tag}}
