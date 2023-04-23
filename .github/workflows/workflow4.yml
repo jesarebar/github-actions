@@ -1,12 +1,15 @@
-name: Workflow1
+name: Workflow4
 
 on:
+  push:
+    branches:
+      - release/**
   pull_request:
     branches:
-      - develop
+      - release/**
 
 jobs:
-  UnitaryIntegrationTests:
+  ReleaseChecking:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
