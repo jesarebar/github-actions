@@ -1,30 +1,41 @@
-name: workflow3
+name: Workflow3
 
 on:
-  schedule:
-    - cron:  '0 2 * * *'
+  workflow_dispatch:
+  #schedule:
+  #  - cron:  '0 2 * * *'
 
 jobs:
-  publish:
+  NightlyPublish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: develop
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
-          distribution: 'adopt'
+          distribution: 'temurin'
           java-version: '17'
-      - name: Run tests
-        run: mvn test
+
+      - name: Run Unitary tests with maven
+        run: mvn test -Dtest="es/codeurjc/ais/unitary/*"
+
+      - name: Run Integration tests with maven
+        run: mvn test -Dtest="es/codeurjc/ais/integration/*"
+
+      - name: Run Rest tests with maven
+        run: mvn test -Dtest="es/codeurjc/ais/e2e/rest/*"
+
+      - name: Run Selenium tests with maven
+        run: mvn test -Dtest="es/codeurjc/ais/e2e/selenium/*"
+
       - name: Generate Docker image
-        run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=${{ secrets.DOCKERHUB_USERNAME }}/items:${{ steps.project.outputs.tag }}-${{steps.timestamp.outputs.tag}}
+        run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=${{ secrets.DOCKERHUB_USERNAME }}/books-reviewer:dev-${{steps.timestamp.outputs.tag}}
       - name: Login to DockerHub
         run: docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" -p "${{ secrets.DOCKERHUB_TOKEN }}"
-      - name: Generate tag
-        run: echo "tag=$(mvn -q help:evaluate -Dexpression=project.version -DforceStdout)" >> $GITHUB_OUTPUT
-        id: project
       - name: Generate timestamp
         run: echo "tag=$(date +'%Y%m%d.%H%M%S')" >> $GITHUB_OUTPUT
         id: timestamp
-      - name: Push image to DockerHub <cambiarr nombre por dev-fecha>
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/items:${{ steps.project.outputs.tag }}-${{steps.timestamp.outputs.tag}}
+      - name: Push image to DockerHub
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/books-reviewer:dev-${{steps.timestamp.outputs.tag}}
