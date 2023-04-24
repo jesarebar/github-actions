@@ -28,6 +28,6 @@ public class UnitaryTest {
 		
 		// THEN
 
-		assertThat(postedItem.getDescription()).isEqualTo(null);
+		assertThat(postedItem.getDescription()).isEqualTo(itemDescription);
 	}
 	}
