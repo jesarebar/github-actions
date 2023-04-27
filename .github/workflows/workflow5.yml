@@ -1,0 +1,52 @@
+name: Workflow5
+
+on:
+  workflow_dispatch:
+#  pull_request:
+#    branches:
+#      -release
+
+jobs:
+  deploy_in_okteto:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Run Unitary tests with maven
+        run: mvn test -Dtest="es/codeurjc/ais/unitary/*"
+
+      - name: Run Integration tests with maven
+        run: mvn test -Dtest="es/codeurjc/ais/integration/*"
+
+      - name: Run Rest tests with maven
+        run: mvn test -Dtest="es/codeurjc/ais/e2e/rest/*"
+
+      - name: Run Selenium tests with maven
+        run: mvn test -Dtest="es/codeurjc/ais/e2e/selenium/*"
+
+      - name: Generate tag
+        run: echo "tag=$(mvn -q help:evaluate -Dexpression=project.version -DforceStdout)" >> $GITHUB_OUTPUT
+        id: project
+
+      - name: Generate Docker image
+        run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=${{ secrets.DOCKERHUB_USERNAME }}/books-reviewer:${{ steps.project.outputs.tag }}
+
+      - name: Login to DockerHub
+        run: docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" -p "${{ secrets.DOCKERHUB_TOKEN }}"
+
+      - name: Push image to DockerHub
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/books-reviewer:${{ steps.project.outputs.tag }}
+
+      - name: Install Okteto CLI
+        run: curl https://get.okteto.com/ -sSfL | sh
+
+      - name: Login into Okteto
+        run: okteto context use https://cloud.okteto.com/ -token ${{ secrets.OKTETO_TOKEN }}
+
+      - name: Deploy to Okteto
+        run: okteto deploy --wait --name books-reviewer
