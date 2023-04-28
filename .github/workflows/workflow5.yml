@@ -49,4 +49,4 @@ jobs:
         run: okteto context use https://cloud.okteto.com --token ${{ secrets.OKTETO_TOKEN }}
 
       - name: Deploy to Okteto
-        run: okteto deploy --wait --namespace books-reviewer
+        run: okteto deploy --wait --namespace books-reviewer --name books-reviewer
