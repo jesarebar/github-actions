@@ -1,10 +1,9 @@
 name: Workflow5
 
 on:
-  workflow_dispatch:
-#  pull_request:
-#    branches:
-#      -release
+  pull_request:
+    branches:
+      -release
 
 jobs:
   deploy_in_okteto:
