@@ -3,7 +3,7 @@ name: Workflow5
 on:
   push:
     branches:
-      -release
+      -master
 
 jobs:
   deploy_in_okteto:
