@@ -1,5 +1,5 @@
 services:
   anuncios:
-    image: jesarebar/books-reviewer/:0.0.1-SNAPSHOT
+    image: jesarebar/books-reviewer:0.0.1-SNAPSHOT
     ports:
       - 8080:8080
