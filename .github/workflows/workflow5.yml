@@ -1,7 +1,7 @@
 name: Workflow5
 
 on:
-  pull_request:
+  push:
     branches:
       -release
 
