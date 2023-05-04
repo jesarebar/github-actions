@@ -1,5 +1,5 @@
 services:
   books-reviewer:
-    image: jesarebar/books-reviewer:0.0.1-SNAPSHOT
+    image: jesarebar/books-reviewer:0.0.1
     ports:
       - 8080:8080
